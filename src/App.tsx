@@ -47,7 +47,13 @@ function App() {
     setNewTask('')
   }
 
-  const handleToggle = () => {}
+  const handleToggle = (index: number) => {
+    const currentTasks = [...tasks]
+
+    // * fill here...
+
+    setTasks(currentTasks)
+  }
 
   return (
     <div className="App">
@@ -58,8 +64,8 @@ function App() {
         <input type="submit" value="Add" />
       </form>
       <div className="todo-container">
-        {tasks.map((task) => {
-          return <Task key={task.id} task={task} />
+        {tasks.map((task, idx) => {
+          return <Task key={task.id} task={task} handleToggle={handleToggle} idx={idx} />
         })}
       </div>
     </div>

@@ -3,12 +3,14 @@ import classes from './Task.module.css'
 
 interface ITaskProps {
   task: TaskDTO
+  handleToggle: (index: number) => void
+  idx: number
 }
 
-const Task = ({ task }: ITaskProps) => {
+const Task = ({ task, handleToggle, idx }: ITaskProps) => {
   return (
     <div className={task.isDone ? `${classes.card} ${classes.completed}` : classes.card}>
-      <p>{task.todo}</p>
+      <p onClick={() => handleToggle(idx)}>{task.todo}</p>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
