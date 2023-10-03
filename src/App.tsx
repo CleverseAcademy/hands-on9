@@ -50,7 +50,7 @@ function App() {
   const handleToggle = (index: number) => {
     const currentTasks = [...tasks]
 
-    // * fill here...
+    currentTasks[index].isDone = !currentTasks[index].isDone
 
     setTasks(currentTasks)
   }
