@@ -7,7 +7,7 @@ interface ITaskProps {
 
 const Task = ({ task }: ITaskProps) => {
   return (
-    <div className={classes.card}>
+    <div className={task.isDone ? `${classes.card} ${classes.completed}` : classes.card}>
       <p>{task.todo}</p>
       <svg
         xmlns="http://www.w3.org/2000/svg"
