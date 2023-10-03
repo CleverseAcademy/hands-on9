@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import './App.css'
 import { TaskDTO } from './types/dto'
+import Task from './components/Task'
 
 const initTasks: TaskDTO[] = [
   {
@@ -29,19 +30,38 @@ function App() {
   const [tasks, setTasks] = useState<TaskDTO[]>(initTasks)
   const [newTask, setNewTask] = useState<string>('')
 
-  const handleAdd = () => {}
+  const handleAdd = (e: FormEvent) => {
+    e.preventDefault()
+
+    const currentTasks = [...tasks]
+
+    currentTasks.push({
+      id: Math.floor(Math.random() * 1000), // * database should generate this
+      todo: newTask,
+      isDone: false,
+    })
+
+    setTasks(currentTasks)
+
+    // * Clear form
+    setNewTask('')
+  }
 
   const handleToggle = () => {}
 
   return (
     <div className="App">
       <h1>React Todo List</h1>
-      <form>
+      <form onSubmit={handleAdd}>
         <label>Add Todo List:</label>
-        <input type="text" required />
+        <input type="text" value={newTask} onChange={(e) => setNewTask(e.target.value)} required />
         <input type="submit" value="Add" />
       </form>
-      <div className="todo-container">{/* * fill here */}</div>
+      <div className="todo-container">
+        {tasks.map((task) => {
+          return <Task key={task.id} task={task} />
+        })}
+      </div>
     </div>
   )
 }

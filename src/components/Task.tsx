@@ -1,9 +1,14 @@
+import { TaskDTO } from '../types/dto'
 import classes from './Task.module.css'
 
-const Task = () => {
+interface ITaskProps {
+  task: TaskDTO
+}
+
+const Task = ({ task }: ITaskProps) => {
   return (
     <div className={classes.card}>
-      <p>RENDER TODO HERE</p>
+      <p>{task.todo}</p>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
