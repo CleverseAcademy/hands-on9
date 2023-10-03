@@ -1,34 +1,48 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { TaskDTO } from './types/dto'
+
+const initTasks: TaskDTO[] = [
+  {
+    id: Math.floor(Math.random() * 1000),
+    todo: 'Learn HTML',
+    isDone: false,
+  },
+  {
+    id: Math.floor(Math.random() * 1000),
+    todo: 'Learn React',
+    isDone: false,
+  },
+  {
+    id: Math.floor(Math.random() * 1000),
+    todo: 'Learn Node.js',
+    isDone: false,
+  },
+  {
+    id: Math.floor(Math.random() * 1000),
+    todo: 'Learn useState',
+    isDone: false,
+  },
+]
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tasks, setTasks] = useState<TaskDTO[]>(initTasks)
+  const [newTask, setNewTask] = useState<string>('')
+
+  const handleAdd = () => {}
+
+  const handleToggle = () => {}
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="App">
+      <h1>React Todo List</h1>
+      <form>
+        <label>Add Todo List:</label>
+        <input type="text" required />
+        <input type="submit" value="Add" />
+      </form>
+      <div className="todo-container">{/* * fill here */}</div>
+    </div>
   )
 }
 
