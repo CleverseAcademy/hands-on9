@@ -55,6 +55,14 @@ function App() {
     setTasks(currentTasks)
   }
 
+  const handleDelete = (index: number) => {
+    const currentTasks = [...tasks]
+
+    currentTasks.splice(index, 1)
+
+    setTasks(currentTasks)
+  }
+
   return (
     <div className="App">
       <h1>React Todo List</h1>
@@ -65,7 +73,7 @@ function App() {
       </form>
       <div className="todo-container">
         {tasks.map((task, idx) => {
-          return <Task key={task.id} task={task} handleToggle={handleToggle} idx={idx} />
+          return <Task key={task.id} task={task} handleToggle={handleToggle} handleDelete={handleDelete} idx={idx} />
         })}
       </div>
     </div>

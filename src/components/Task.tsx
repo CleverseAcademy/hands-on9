@@ -4,10 +4,11 @@ import classes from './Task.module.css'
 interface ITaskProps {
   task: TaskDTO
   handleToggle: (index: number) => void
+  handleDelete: (index: number) => void
   idx: number
 }
 
-const Task = ({ task, handleToggle, idx }: ITaskProps) => {
+const Task = ({ task, handleToggle, handleDelete, idx }: ITaskProps) => {
   return (
     <div className={task.isDone ? `${classes.card} ${classes.completed}` : classes.card}>
       <p onClick={() => handleToggle(idx)}>{task.todo}</p>
@@ -18,7 +19,7 @@ const Task = ({ task, handleToggle, idx }: ITaskProps) => {
         strokeWidth={1.5}
         stroke="currentColor"
         className={classes.delete}
-        // onClick={}
+        onClick={() => handleDelete(idx)}
       >
         <path
           strokeLinecap="round"
